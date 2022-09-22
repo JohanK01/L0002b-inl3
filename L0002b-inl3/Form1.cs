@@ -9,11 +9,13 @@ namespace L0002b_inl3
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //definerar alla variabler jag behöver 
             string Fname = textBox1.Text;
             string Lname = textBox2.Text;
             string pnr = textBox3.Text;
             person.checking(pnr);
 
+            //skriver ut Fnamn Enamn och pnr
             listBox1.Items.Clear();
             listBox1.Items.Add($"Förnamn: {Fname}");
             listBox1.Items.Add($"Efternamn: {Lname}");
@@ -24,9 +26,12 @@ namespace L0002b_inl3
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //stänger ner appen
             Close();
         }
     }
+    //skapar en klass som kommer kolla så att personnummret är giltligt
+    //Kommer även kolla vilket kön man är
     class person
     {
         string Fname;
@@ -35,6 +40,7 @@ namespace L0002b_inl3
 
         public static int checking(string pnr)
         {
+            //Algoritmen vi fick
             int value = 0;
             for (int i = 0; i < pnr.Length; i++)
             {
@@ -48,13 +54,14 @@ namespace L0002b_inl3
             int answer = value % 10;
             if (answer == 0)
             {
-                MessageBox.Show("Personnummer stämmer");
-                gender(pnr);
+                //om personnummret stämmer så körs även den andra metoden
+                MessageBox.Show("Personnummret är giltligt");
+                gender(pnr); 
 
             }
             else
             {
-                MessageBox.Show("Personnummer stämmer inte");
+                MessageBox.Show("Personnummret är inte giltligt");
             }
             return (value % 10);
 
@@ -63,7 +70,7 @@ namespace L0002b_inl3
         static void gender(string pnr)
         {
             int gender = pnr[8] - 48;
-
+            //om det är jämt så är man en kvinna eller så är man en man
             if (gender % 2 == 0)
             {
                 MessageBox.Show("Kvinna");
